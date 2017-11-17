@@ -66,7 +66,7 @@ public class TestConfigurer {
 
     public static void main(String[] args) {
         TestConfigurer testConfigurer = new TestConfigurer();
-        TestConfigurer.getProperty("username");
+        System.out.println(TestConfigurer.getProperty("username"));
 
     }
 }
