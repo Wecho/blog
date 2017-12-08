@@ -20,7 +20,6 @@ public class TestCglib {
             System.out.println("after call "+method);
             return result;
         });
-
         CglibDemo cglibDemoProxy = (CglibDemo) enhancer.create();
         cglibDemoProxy.sayHello();
         System.out.println(cglibDemoProxy);
