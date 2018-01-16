@@ -1,4 +1,4 @@
-package com.wecho.core.ajax;
+package com.wecho.core.api;
 
 import org.springframework.web.bind.annotation.RestController;
 
