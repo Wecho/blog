@@ -11,14 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/api/article")
 public class ArticleAjax {
 
+    private final ArticleService articleService;
+
     @Autowired
-    private ArticleService articleService;
+    public ArticleAjax(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     @GetMapping(value = "/all")
-    public ResultBean<List<Article>> listBlog(){
+    public ResultBean<List<Article>> listArticles(){
         return new ResultBean<>(articleService.listArticles());
     }
+
 }
