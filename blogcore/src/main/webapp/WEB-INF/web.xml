@@ -4,26 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.wecho.core.controller.servlet.LoginServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.wecho.core.testservlet.TestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
-
+    <display-name>Wecho Blog</display-name>
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
