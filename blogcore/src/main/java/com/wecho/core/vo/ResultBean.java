@@ -1,10 +1,13 @@
 package com.wecho.core.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * http响应的包装类
  */
+@Data
 public class ResultBean<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,27 +37,4 @@ public class ResultBean<T> implements Serializable {
         this.data = data;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }
