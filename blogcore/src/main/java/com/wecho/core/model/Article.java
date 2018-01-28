@@ -88,7 +88,6 @@ public class Article implements Serializable {
      *
      * @mbggenerated
      */
-    @JsonIgnore
     private String validFlag;
 
     /**

@@ -1,9 +1,12 @@
 package com.wecho.core.jdbc.template;
 
-import java.lang.reflect.Constructor;
+import com.wecho.core.reflcet.ReflectUtil;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JdbcUtil {
     private static Connection connection = null;
@@ -29,25 +32,40 @@ public class JdbcUtil {
         return connection;
     }
 
-    public <T> T selectByPrimaryKey(Class<T> object, String tableNameStr) throws SQLException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public <T> T selectByPrimaryKey(Class<T> clazz, String tableNameStr) throws SQLException,
+            NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         String selectStr = "select * from %s";
         selectStr = String.format(selectStr, tableNameStr);
 
         preparedStatement = connection.prepareStatement(selectStr);
 
         resultSet = preparedStatement.executeQuery();
+        T con = clazz.newInstance();
+        while (resultSet.next()) {
+            con = ReflectUtil.generator(clazz, mappingMap(resultSet, con));
+        }
+        return con;
+    }
 
-        Constructor con = object.getConstructor();
-        Object objectInstance = con.newInstance();
-        while(resultSet.next()){
-            int i = 1;
-            Field fields[] = object.getFields();
-            for (int fieldIndex = 0; fieldIndex < fields.length; fieldIndex++) {
-                Field field = fields[fieldIndex];
-                field.set(objectInstance,resultSet.getObject(i++));
+    private Map<String, Object> mappingMap(ResultSet resultSet, Object obj) throws SQLException {
+        Map<String, Object> map = new HashMap<>();
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            map.put(field.getName(), resultSet.getObject(formatFieldToSqlStyle(field.getName())));
+        }
+        return map;
+    }
+
+    private String formatFieldToSqlStyle(String field) {
+        int length = field.length();
+        for (int i = 0; i < length; i++) {
+            Character c = field.charAt(i);
+            if (c >= 'A' && c <= 'Z') {
+                field = field.replaceFirst(c.toString(), "_" + c);
+                length ++;
+                i += 1;
             }
         }
-
-        return (T) objectInstance;
+        return  field;
     }
 }
