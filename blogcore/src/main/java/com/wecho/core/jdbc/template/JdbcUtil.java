@@ -1,6 +1,7 @@
 package com.wecho.core.jdbc.template;
 
 import com.wecho.core.reflcet.ReflectUtil;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -8,6 +9,7 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class JdbcUtil {
     private static Connection connection = null;
     private PreparedStatement preparedStatement = null;
