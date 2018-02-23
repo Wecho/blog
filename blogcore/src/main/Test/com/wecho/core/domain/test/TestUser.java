@@ -1,6 +1,6 @@
 package com.wecho.core.domain.test;
 
-import com.wecho.core.domain.User;
+import com.wecho.core.model.User;
 import com.wecho.core.spring.config.LoginConfig;
 import org.junit.Assert;
 import org.junit.Test;

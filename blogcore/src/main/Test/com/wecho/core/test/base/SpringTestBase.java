@@ -1,5 +1,6 @@
 package com.wecho.core.test.base;
 
+import com.wecho.core.spring.config.RootConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration(value = "src/main/webapp")
 //指定bean注入的配置文件
 @ContextHierarchy({
-        @ContextConfiguration(name = "parent", locations = "classpath:applicationContext.xml"),
+        @ContextConfiguration(name = "parent",classes = RootConfig.class),
         /*@ContextConfiguration(name = "child", locations = "classpath:springMvcContext.xml")*/
 })
 //使用标准的JUnit @RunWith注释来告诉JUnit使用Spring TestRunner

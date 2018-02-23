@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -23,9 +24,22 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         internalResourceViewResolver.setExposeContextBeansAsAttributes(true);
         return internalResourceViewResolver;
     }
+/*
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+*/
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+        registry.addResourceHandler("/resources/js/**").addResourceLocations("/WEB-INF/resources/js/");
+        registry.addResourceHandler("/resources/css/**").addResourceLocations("/WEB-INF/resources/css/");
+        registry.addResourceHandler("/resources/img/**").addResourceLocations("/WEB-INF/resources/img/");
+        registry.addResourceHandler("/resources/images/**").addResourceLocations("/WEB-INF/resources/images/");
+        registry.addResourceHandler("/resources/fonts/**").addResourceLocations("/WEB-INF/resources/fonts/");
+        registry.addResourceHandler("/resources/plugins/**").addResourceLocations("/WEB-INF/resources/plugins/");
     }
 }

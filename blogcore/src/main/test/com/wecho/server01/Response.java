@@ -31,7 +31,7 @@ public class Response {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {//D:\blogparent\blog\blogcore\src\main\webapp\index.jsp
+        }finally {
             try {
                 ops.close();
             } catch (IOException e) {

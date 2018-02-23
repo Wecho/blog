@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class ArticleService {
 
+    private final ArticleMapper articleMapper;
+
     @Autowired
-    private ArticleMapper articleMapper;
+    public ArticleService(ArticleMapper articleMapper) {
+        this.articleMapper = articleMapper;
+    }
 
     /**
      *
