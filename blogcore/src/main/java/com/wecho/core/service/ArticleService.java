@@ -34,7 +34,7 @@ public class ArticleService {
     }
 
     public Article getArticle(String id) throws SQLException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchEntityException {
-        Optional<Article> article = Optional.of(articleDao.getArticle(id));
+        Optional<Article> article = Optional.ofNullable(articleDao.getArticle(id));
         return article.orElseThrow(() -> new NoSuchEntityException("查询不到id为["+id+"]的数据"));
     }
 }
